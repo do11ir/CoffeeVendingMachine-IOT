@@ -1,0 +1,50 @@
+/* Base Tailwind imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font Definitions */
+@font-face {
+    font-family: 'YekanBakh';
+    src: url('./fonts/YekanBakh-Black.woff2') format('woff2'),
+         url('./fonts/YekanBakh-Black.ttf') format('truetype');
+    font-weight: 900; /* Black */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'YekanBold';
+    src: url('./fonts/YekanBakh-Bold.woff2') format('woff2'),
+         url('./fonts/YekanBakh-Bold.ttf') format('truetype');
+    font-weight: 700; /* Bold */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'YekanLight';
+    src: url('./fonts/YekanBakh-Light.woff2') format('woff2'),
+         url('./fonts/YekanBakh-Light.ttf') format('truetype');
+    font-weight: 300; /* Light */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'YekanRegular';
+    src: url('./fonts/YekanBakh-Regular.woff2') format('woff2'),
+         url('./fonts/YekanBakh-Regular.ttf') format('truetype');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+}
+
+/* Example Usage */
+body {
+    font-family: 'YekanRegular', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'YekanBold', sans-serif;
+}
+
+p {
+    font-family: 'YekanLight', sans-serif;
+}

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Product Cards</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="tailwind.css">
+    <style>
+        .yekanbold {
+            font-family: 'YekanBold', sans-serif;
+            direction: rtl;
+            unicode-bidi: embed;
+            font-size: 1.7rem;
+        }
+        .yekanbold2 {
+            font-family: 'YekanBold', sans-serif;
+            direction: rtl;
+            unicode-bidi: embed;
+            font-size: 1rem;
+        }
+
+        /* Animation for the blue bar */
+        .blue-bar {
+            width: 140px;
+            height: 40px;
+            background-color: #188ea0aa;
+            border-radius: 15px 15px 0 0;
+            transition: margin 0.4s ease, transform 0.4s ease;
+        }
+
+        .select-btn {
+            background-color: #ffffff74;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 30px 30px 0 0;
+            position: absolute;
+            bottom: 0;
+            width: 170px;
+            height: 60px;
+            font-size: 22px;
+        }
+
+        /* On hover or click, the blue bar expands */
+        .card-container:hover .blue-bar,
+        .card-container:focus-within .blue-bar:focus {
+            margin-top: 40px; /* Matches button width */
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            font-family: 'YekanBold', sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-body {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .modal-close-btn {
+            background: #188ea0;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .modal-close-btn:hover {
+            background: #145e6e;
+        }
+    </style>
+</head>
+<body class="bg-[#07182F] flex items-center justify-center min-h-screen p-4">
+    <!-- Responsive Grid Container -->
+    <div class="w-full max-w-[90%] lg:w-[80%] mx-auto relative flex flex-col items-center">
+        <div class="text-center w-[90%] mb-8">
+            <h1 class="typewriter text-[#ACB9C9] yekanbold text-[25px] lg:text-3xl">بهترین نوشیدنی‌های گرم در دسترس شما</h1>
+            <p class="fade-in text-[#ACB9C9] yekanbold2 mt-4">از بین محصولات خوشمزه ما انتخاب کنید و لذت ببرید.</p>
+        </div>
+
+        <!-- Grid with responsive columns -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 relative justify-center">
+            <!-- Card -->
+            <div class="card-container bg-gradient-to-r from-[#ffffff00] to-[#1c889616] w-[250px] h-[260px] rounded-[45px] flex flex-col items-center p-4 shadow-lg relative">
+                <div class="w-16 h-16 rounded-md flex items-center justify-center">
+                    <img src="./img/macchiato_1.webp" alt="Coffee" class="w-15 h-15">
+                </div>
+                <div class="text-center text-white mt-5 text-sm">
+                    <p class="text-[#ACB9C9] mb-[15px] yekanbold">ماکیاتو</p>
+                    <hr class="border-t border-[#ACB9C9] w-[80px] mr-auto ml-auto my-2">
+                    <p class="yekanbold2">۲۵ هزار تومان</p>
+                </div>
+                <div class="blue-bar mt-[27px]"></div>
+                <div class="select-btn yekanbold backdrop-blur-lg absolute bottom-0 text-center pt-3" onclick="openModal()">
+                    انتخاب
+                </div>
+            </div>
+            <div class="card-container bg-gradient-to-r from-[#ffffff00] to-[#1c889616] w-[250px] h-[260px] rounded-[45px] flex flex-col items-center p-4 shadow-lg relative">
+                <div class="w-16 h-16 rounded-md flex items-center justify-center">
+                    <img src="./img/macchiato_1.webp" alt="Coffee" class="w-15 h-15">
+                </div>
+                <div class="text-center text-white mt-5 text-sm">
+                    <p class="text-[#ACB9C9] mb-[15px] yekanbold">ماکیاتو</p>
+                    <hr class="border-t border-[#ACB9C9] w-[80px] mr-auto ml-auto my-2">
+                    <p class="yekanbold2">۲۵ هزار تومان</p>
+                </div>
+                <div class="blue-bar mt-[27px]"></div>
+                <div class="select-btn yekanbold backdrop-blur-lg absolute bottom-0 text-center pt-3" onclick="openModal()">
+                    انتخاب
+                </div>
+            </div>
+            <div class="card-container bg-gradient-to-r from-[#ffffff00] to-[#1c889616] w-[250px] h-[260px] rounded-[45px] flex flex-col items-center p-4 shadow-lg relative">
+                <div class="w-16 h-16 rounded-md flex items-center justify-center">
+                    <img src="./img/macchiato_1.webp" alt="Coffee" class="w-15 h-15">
+                </div>
+                <div class="text-center text-white mt-5 text-sm">
+                    <p class="text-[#ACB9C9] mb-[15px] yekanbold">ماکیاتو</p>
+                    <hr class="border-t border-[#ACB9C9] w-[80px] mr-auto ml-auto my-2">
+                    <p class="yekanbold2">۲۵ هزار تومان</p>
+                </div>
+                <div class="blue-bar mt-[27px]"></div>
+                <div class="select-btn yekanbold backdrop-blur-lg absolute bottom-0 text-center pt-3" onclick="openModal()">
+                    انتخاب
+                </div>
+            </div>
+                <div class="card-container bg-gradient-to-r from-[#ffffff00] to-[#1c889616] w-[250px] h-[260px] rounded-[45px] flex flex-col items-center p-4 shadow-lg relative">
+                    <div class="w-16 h-16 rounded-md flex items-center justify-center">
+                        <img src="./img/macchiato_1.webp" alt="Coffee" class="w-15 h-15">
+                    </div>
+                    <div class="text-center text-white mt-5 text-sm">
+                        <p class="text-[#ACB9C9] mb-[15px] yekanbold">ماکیاتو</p>
+                        <hr class="border-t border-[#ACB9C9] w-[80px] mr-auto ml-auto my-2">
+                        <p class="yekanbold2">۲۵ هزار تومان</p>
+                    </div>
+                    <div class="blue-bar mt-[27px]"></div>
+                    <div class="select-btn yekanbold backdrop-blur-lg absolute bottom-0 text-center pt-3" onclick="openModal()">
+                        انتخاب
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden" onclick="closeOnOutsideClick(event)">
+        <div id="modal1" class="bg-[#1e293b] text-white rounded-[30px] p-6 w-[90%] max-w-md transform transition-transform scale-95 relative" onclick="event.stopPropagation()">
+            <!-- Close Icon -->
+            <button class="absolute top-3 right-3 text-white text-2xl hover:text-gray-300" onclick="closeModal()">×</button>
+            
+            <div class="modal-header text-lg font-bold mb-4 yekanbold text-center">شخصی‌سازی نوشیدنی</div>
+            <div class="modal-body mb-6">
+                <p class="yekanbold2 text-sm mb-4 text-center">سطح شیر، کافئین، و شکر خود را تنظیم کنید:</p>
+        
+                <!-- Milk Level -->
+                <div class="mb-6">
+                    <label class="yekanbold text-sm mb-2 block">سطح شیر:</label>
+                    <div class="flex items-center">
+                        <button id="milk-minus" class="bg-[#188ea0] hover:bg-[#145e6e] text-white px-4 py-[5px] rounded-lg transition-all text-[23px]" onclick="adjustLevel('milk', -1)">−</button>
+                        <div class="relative w-full bg-[#e2e8f0] h-6 mx-4 rounded-full overflow-hidden draggable-bar" data-type="milk">
+                            <div id="milk-bar" class="absolute bg-[#188ea0] h-full w-0 transition-all duration-300"></div>
+                        </div>
+                        <button id="milk-plus" class="bg-[#188ea0] hover:bg-[#145e6e] text-white px-4 py-[5px] rounded-lg transition-all text-[23px]" onclick="adjustLevel('milk', 1)">+</button>
+                    </div>
+                </div>
+        
+                <!-- Caffeine Level -->
+                <div class="mb-6">
+                    <label class="yekanbold text-sm mb-2 block">سطح کافئین:</label>
+                    <div class="flex items-center">
+                        <button id="caffeine-minus" class="bg-[#188ea0] hover:bg-[#145e6e] text-white px-4 py-[5px] rounded-lg transition-all text-[23px]" onclick="adjustLevel('caffeine', -1)">−</button>
+                        <div class="relative w-full bg-[#e2e8f0] h-6 mx-4 rounded-full overflow-hidden draggable-bar" data-type="caffeine">
+                            <div id="caffeine-bar" class="absolute bg-[#188ea0] h-full w-0 transition-all duration-300"></div>
+                        </div>
+                        <button id="caffeine-plus" class="bg-[#188ea0] hover:bg-[#145e6e] text-white px-4 py-[5px] rounded-lg transition-all text-[23px]" onclick="adjustLevel('caffeine', 1)">+</button>
+                    </div>
+                </div>
+        
+                <!-- Sugar Level -->
+                <div class="mb-6">
+                    <label class="yekanbold text-sm mb-2 block">سطح شکر:</label>
+                    <div class="flex items-center">
+                        <button id="sugar-minus" class="bg-[#188ea0] hover:bg-[#145e6e] text-white px-4 py-[5px] rounded-lg transition-all text-[23px]" onclick="adjustLevel('sugar', -1)">−</button>
+                        <div class="relative w-full bg-[#e2e8f0] h-6 mx-4 rounded-full overflow-hidden draggable-bar" data-type="sugar">
+                            <div id="sugar-bar" class="absolute bg-[#188ea0] h-full w-0 transition-all duration-300"></div>
+                        </div>
+                        <button id="sugar-plus" class="bg-[#188ea0] hover:bg-[#145e6e] text-white px-4 py-[5px] rounded-lg transition-all text-[23px]" onclick="adjustLevel('sugar', 1)">+</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Change the button text to ثبت سفارش -->
+            <button class="bg-[#188ea0] hover:bg-[#145e6e] text-white py-2 px-4 rounded-lg yekanbold text-sm w-full" onclick="submitOrder()">ثبت سفارش</button>
+        </div>
+    </div>
+    
+    <script>
+          const levels = {
+        milk: 0,
+        caffeine: 0,
+        sugar: 0
+    };
+
+    function adjustLevel(type, change) {
+        const bar = document.getElementById(`${type}-bar`);
+        levels[type] = Math.min(3, Math.max(0, levels[type] + change));
+        updateBar(type);
+    }
+
+    function updateBar(type) {
+        const bar = document.getElementById(`${type}-bar`);
+        const minusButton = document.getElementById(`${type}-minus`);
+        const plusButton = document.getElementById(`${type}-plus`);
+
+        bar.style.width = `${(levels[type] / 3) * 100}%`;
+
+        minusButton.disabled = levels[type] === 0;
+        minusButton.classList.toggle('opacity-50', levels[type] === 0);
+
+        plusButton.disabled = levels[type] === 3;
+        plusButton.classList.toggle('opacity-50', levels[type] === 3);
+    }
+
+    // Dragging functionality
+    const bars = document.querySelectorAll('.draggable-bar');
+
+    bars.forEach(bar => {
+        bar.addEventListener('mousedown', startDragging);
+        bar.addEventListener('touchstart', startDragging, { passive: true });
+    });
+
+    function startDragging(e) {
+        const bar = e.currentTarget;
+        const type = bar.dataset.type;
+
+        function onDrag(event) {
+            const rect = bar.getBoundingClientRect();
+            const x = (event.touches ? event.touches[0].clientX : event.clientX) - rect.left;
+            // Reverse the percentage calculation: 
+            const percentage = Math.min(100, Math.max(0, (rect.width - x) / rect.width * 100)); 
+            levels[type] = Math.round((percentage / 100) * 3);
+            updateBar(type);
+        }
+
+        function stopDragging() {
+            document.removeEventListener('mousemove', onDrag);
+            document.removeEventListener('mouseup', stopDragging);
+            document.removeEventListener('touchmove', onDrag);
+            document.removeEventListener('touchend', stopDragging);
+        }
+
+        document.addEventListener('mousemove', onDrag);
+        document.addEventListener('mouseup', stopDragging);
+        document.addEventListener('touchmove', onDrag, { passive: true });
+        document.addEventListener('touchend', stopDragging);
+    }
+    
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+    
+        function openModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+    
+        // Close modal if clicked outside the modal content
+        function closeOnOutsideClick(event) {
+            const modal = document.getElementById('modal');
+            if (!event.target.closest('.bg-[#1e293b]')) {
+                closeModal();
+            }
+        }
+    </script>
+    
+    
+    
+    
+</body>
+</html>
